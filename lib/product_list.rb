@@ -6,10 +6,18 @@ class ProductList
           {product_code: '003',name:'Kids T-shirt', price:'19.95'}
         ]
 
-  def find_item(item_code)
-    if ITEMS.select { |x| x[:product_code] == item_code }.empty? == true
-      raise ('There is no data on this item')
-    end
+  def find_item(item)
+    raise ('There is no data on this item') if invaild_item?(item)
+  end
+
+    private
+
+  def invaild_item?(item)
+    selected_item(item).empty? == true
+  end
+
+  def selected_item(item)
+    ITEMS.select { |x| x[:product_code] == item }
   end
 
 end
