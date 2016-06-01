@@ -1,6 +1,5 @@
 class Checkout
 
-  attr_reader :product_list
 
   def initialize(promotional_rules, product_list = ProductList,basket = Basket)
     @product_list = product_list.new

@@ -32,4 +32,10 @@ describe Basket do
 
   end
 
+  context 'finalize'
+    it 'requests discounts to be made' do
+      expect(discounts).to receive(:new_discounts).with(items,promotions)
+      basket.finalize(promotions)
+    end
+
 end
