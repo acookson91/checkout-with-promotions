@@ -1,0 +1,3 @@
+class TotalItems
+
+end

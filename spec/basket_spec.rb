@@ -2,7 +2,8 @@ require 'basket'
 
 describe Basket do
 
-  subject(:basket){described_class.new}
+  subject(:basket){described_class.new(total_items_class)}
+  let(:total_items_class){double:total_items_class, new: totalitems}
   let(:totalitems){double:totalitems, calculate: nil }
 
   context 'stores items' do
@@ -19,9 +20,8 @@ describe Basket do
 
   context 'calculation' do
     it 'sends items for updated subtotal' do
-      items = 'items'
-      expect(totalitems).to receive(:calculate).with(items)
-      basket.subtotal(items)
+      expect(totalitems).to receive(:calculate).with([])
+      basket.subtotal
     end
 
   end
