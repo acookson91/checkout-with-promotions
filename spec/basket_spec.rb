@@ -1,10 +1,14 @@
 require 'basket'
+require 'pry'
 
 describe Basket do
 
-  subject(:basket){described_class.new(total_items_class)}
+  subject(:basket){described_class.new(promotional_rules,total_items_class,item_discounts_class)}
   let(:total_items_class){double:total_items_class, new: totalitems}
+  let(:item_discounts_class){double:item_discounts_class, new: itemdiscounts}
   let(:totalitems){double:totalitems, calculate: 18.50 }
+  let(:itemdiscounts){double:itemdiscounts, new_discounts: nil}
+  let(:promotional_rules){double:promotional_rules}
 
   context 'stores items' do
     it 'starts with a empty item array' do
@@ -29,13 +33,13 @@ describe Basket do
       basket.store(item_info)
       expect(basket.subtotal).to eq(18.50)
     end
-
   end
 
-  context 'finalize'
+  context 'finalize' do
     it 'requests discounts to be made' do
-      expect(discounts).to receive(:new_discounts).with(items,promotions)
-      basket.finalize(promotions)
+      expect(itemdiscounts).to receive(:new_discounts).with(basket.items,basket.subtotal,promotional_rules)
+      basket.finalize
     end
+  end
 
 end

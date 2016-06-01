@@ -27,7 +27,7 @@ describe Checkout do
 
   context 'final amount' do
     it 'request total amount' do
-      expect(basket).to receive(:finalize).with(promotional_rules)
+      expect(basket).to receive(:finalize)
       checkout.total
     end
   end

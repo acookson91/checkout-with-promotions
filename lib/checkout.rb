@@ -1,10 +1,8 @@
 class Checkout
 
-
   def initialize(promotional_rules, product_list = ProductList,basket = Basket)
     @product_list = product_list.new
-    @basket = basket.new
-    @promotional_rules = promotional_rules
+    @basket = basket.new(promotional_rules)
   end
 
   def store(item_code)
@@ -13,7 +11,7 @@ class Checkout
   end
 
   def total
-    @basket.finalize(@promotional_rules)
+    @basket.finalize
   end
 
 end
