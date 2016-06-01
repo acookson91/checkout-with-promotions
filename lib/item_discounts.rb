@@ -2,7 +2,7 @@ class ItemDiscounts
 
   def percent_off(subtotal,limit,percentage)
     if subtotal >= limit
-      percentage/100.to_f * subtotal
+      percent(percentage) * subtotal
     end
   end
 
@@ -12,4 +12,9 @@ class ItemDiscounts
     end
   end
 
+  private
+
+  def percent(percentage)
+    percentage/100.to_f
+  end
 end
