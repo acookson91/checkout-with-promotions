@@ -8,6 +8,7 @@ class ProductList
 
   def find_item(item)
     raise ('There is no data on this item') if invaild_item?(item)
+    selected_item(item)
   end
 
     private
