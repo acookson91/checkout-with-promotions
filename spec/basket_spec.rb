@@ -3,6 +3,7 @@ require 'basket'
 describe Basket do
 
   subject(:basket){described_class.new}
+  let(:totalitems){double:totalitems, calculate: nil }
 
   context 'stores items' do
     it 'starts with a empty item array' do
@@ -14,6 +15,15 @@ describe Basket do
       basket.store(item_info)
       expect(basket.items).to eq(item_info)
     end
+  end
+
+  context 'calculation' do
+    it 'sends items for updated subtotal' do
+      items = 'items'
+      expect(totalitems).to receive(:calculate).with(items)
+      basket.subtotal(items)
+    end
+
   end
 
 end
