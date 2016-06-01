@@ -21,7 +21,14 @@ describe Basket do
   context 'calculation' do
     it 'sends items for updated subtotal' do
       expect(totalitems).to receive(:calculate).with([])
-      basket.subtotal
+      basket.update_subtotal
+    end
+
+    it 'updates subtotal with correct amount' do
+      product_info = {product_code: '001',name:'Lavender heart', price:'9.25'}
+      item_info = [product_info,product_info]
+      basket.store(item_info)
+      expect(basket.subtotal).to eq(18.50)
     end
 
   end

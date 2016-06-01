@@ -11,7 +11,7 @@ class Basket
     @items << item_info[0]
   end
 
-  def subtotal
+  def update_subtotal
     @total_items.calculate(@items)
   end
 
