@@ -2,9 +2,7 @@ class Basket
 
   attr_reader :items, :subtotal
 
-  def initialize(promotional_rules,total_items = TotalItems, item_discounts = ItemDiscounts)
-    @total_items = total_items.new
-    @item_discounts = item_discounts.new
+  def initialize(promotional_rules = PromotionalRules)
     @promotional_rules = promotional_rules
     @items = []
     @subtotal = 0
@@ -16,11 +14,19 @@ class Basket
   end
 
   def update_subtotal
-    @subtotal = @total_items.calculate(items)
+    calculate_subtotal(@items)
   end
+  # 
+  # def finalize
+  #   @promotional_rules(items)
+  # end
 
-  def finalize
-    @item_discounts.new_discounts(items,subtotal, @promotional_rules)
+  private
+
+  def calculate_subtotal(items)
+    new_subtotal = 0
+    items.each {|x| new_subtotal += x[:price].to_f}
+    new_subtotal
   end
 
 end

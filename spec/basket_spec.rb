@@ -3,11 +3,7 @@ require 'pry'
 
 describe Basket do
 
-  subject(:basket){described_class.new(promotional_rules,total_items_class,item_discounts_class)}
-  let(:total_items_class){double:total_items_class, new: totalitems}
-  let(:item_discounts_class){double:item_discounts_class, new: itemdiscounts}
-  let(:totalitems){double:totalitems, calculate: 18.50 }
-  let(:itemdiscounts){double:itemdiscounts, new_discounts: nil}
+  subject(:basket){described_class.new(promotional_rules)}
   let(:promotional_rules){double:promotional_rules}
 
   context 'stores items' do
@@ -22,23 +18,18 @@ describe Basket do
     end
   end
 
-  context 'calculation' do
-    it 'sends items for updated subtotal' do
-      expect(totalitems).to receive(:calculate).with([])
-      basket.update_subtotal
-    end
+  # context 'finalize' do
+  #   it 'requests discounts to be made' do
+  #     expect(itemdiscounts).to receive(:new_discounts).with(basket.items,basket.subtotal,promotional_rules)
+  #     basket.finalize
+  #   end
+  # end
 
-    it 'updates subtotal with total items response' do
-      item_info = ['product_info','product_info']
+  context 'total' do
+    it 'works out total before discount' do
+      item_info = [{product_code: '001',name:'Lavender heart', price:'9.25'}]
       basket.store(item_info)
-      expect(basket.subtotal).to eq(18.50)
-    end
-  end
-
-  context 'finalize' do
-    it 'requests discounts to be made' do
-      expect(itemdiscounts).to receive(:new_discounts).with(basket.items,basket.subtotal,promotional_rules)
-      basket.finalize
+      expect(basket.update_subtotal).to eq(9.25)
     end
   end
 

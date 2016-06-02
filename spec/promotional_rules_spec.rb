@@ -1,11 +1,11 @@
-require 'item_discounts'
+require 'promotional_rules'
 
-describe ItemDiscounts do
+describe PromotionalRules do
 
-  subject(:itemdiscounts){described_class.new}
+  subject(:promotionalrules){described_class.new}
 
   it 'calculates 10% discount' do
-    expect(itemdiscounts.percent_off(100,60,20)).to eq(20)
+    expect(promotionalrules.percent_off(100,60,20)).to eq(20)
   end
 
   it 'calculates multibuy discount' do
@@ -16,6 +16,6 @@ describe ItemDiscounts do
     product_code = '001'
     quantity = 2
     discount = 2
-    expect(itemdiscounts.multibuy(items,product_code,quantity,discount)).to eq(4)
+    expect(promotionalrules.multibuy(items,product_code,quantity,discount)).to eq(4)
   end
 end
