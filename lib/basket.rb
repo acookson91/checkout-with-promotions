@@ -17,10 +17,6 @@ class Basket
     calculate_subtotal(@items)
   end
 
-  # def finalize
-  #   @promotional_rules(items)
-  # end
-
   private
 
   def calculate_subtotal(items)
