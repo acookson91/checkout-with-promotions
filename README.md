@@ -43,11 +43,20 @@ two_lavender_hearts = MultiDiscount.new(001,2,0.75)
 
 Adding the promotion to the checkout
 
-``
+```
 promotions = [ten_off,two_lavender_hearts]
 co = Checkout.new(promotions)
 
-``
+```
+
+## Creating a custom promotions
+
+Custom promotions need a calculate_discount method with the basket as an argument. This allows the promotion access to items,subtotal to make calculations. This method should return the discounted amount. Below is an example of how the custom promotions is called from the checkout class.
+
+```
+ten_off = PercentageDiscount.new(60,10)
+ten_off.calculate_discount(@basket)
+```
 
 ## Scanning items
 
@@ -83,6 +92,7 @@ price = co.total
 I used ruby with Rspec for testing.
 
 ## Features
+
 
 
 ## Design approach and Challenges
