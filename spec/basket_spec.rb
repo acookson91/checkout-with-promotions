@@ -18,12 +18,6 @@ describe Basket do
     end
   end
 
-  # context 'finalize' do
-  #   it 'requests discounts to be made' do
-  #     expect(itemdiscounts).to receive(:new_discounts).with(basket.items,basket.subtotal,promotional_rules)
-  #     basket.finalize
-  #   end
-  # end
 
   context 'total' do
     it 'works out total before discount' do

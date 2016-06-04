@@ -16,17 +16,20 @@ class Basket
   def update_subtotal
     calculate_subtotal(@items)
   end
-  # 
-  # def finalize
-  #   @promotional_rules(items)
-  # end
+
+  def finalize
+    @promotional_rules(items)
+  end
 
   private
 
   def calculate_subtotal(items)
     new_subtotal = 0
-    items.each {|x| new_subtotal += x[:price].to_f}
+    items.each {|item| new_subtotal += item[:price].to_f}
     new_subtotal
   end
 
 end
+
+mutil = Mutli.new(items,product_code,quantity,discount)
+mutil.calculate_discount(@items, subtotal)
