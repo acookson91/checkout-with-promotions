@@ -1,8 +1,8 @@
 class Checkout
 
-  def initialize(promotional_rules, product_list = ProductList.new,basket = Basket)
+  def initialize(promotional_rules, product_list = ProductList.new,basket = Basket.new)
     @product_list = product_list
-    @basket = basket.new(promotional_rules)
+    @basket = basket
     @promotional_rules = promotional_rules
   end
 

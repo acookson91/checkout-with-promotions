@@ -3,8 +3,7 @@ require 'pry'
 
 describe Basket do
 
-  subject(:basket){described_class.new(promotional_rules)}
-  let(:promotional_rules){double:promotional_rules}
+  subject(:basket){described_class.new}
 
   context 'stores items' do
     it 'starts with a empty item array' do

@@ -2,8 +2,7 @@ class Basket
 
   attr_reader :items, :subtotal
 
-  def initialize(promotional_rules = PromotionalRules)
-    @promotional_rules = promotional_rules
+  def initialize
     @items = []
     @subtotal = 0
   end
@@ -15,6 +14,10 @@ class Basket
 
   def update_subtotal
     calculate_subtotal(@items)
+  end
+
+  def request_subtotal
+    @subtotal
   end
 
   private
