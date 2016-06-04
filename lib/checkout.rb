@@ -12,10 +12,19 @@ class Checkout
   end
 
   def total
-    subtotal = @basket.request_subtotal
+    subtotal - discount_amount
+  end
+
+  private
+
+  def subtotal
+    @basket.request_subtotal
+  end
+
+  def discount_amount
     discount_amount = 0
     @promotional_rules.each {|discount| discount_amount += discount.calculate_discount(@basket)}
-    total = subtotal - discount_amount
+    discount_amount
   end
 
 end

@@ -16,7 +16,7 @@ describe MultiDiscount do
     it 'calculates multibuy discount' do
       expect(multidiscount.calculate_discount(basket)).to eq(4)
     end
-
+    
   end
 
 end
