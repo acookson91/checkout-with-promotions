@@ -17,9 +17,9 @@ class Basket
     calculate_subtotal(@items)
   end
 
-  def finalize
-    @promotional_rules(items)
-  end
+  # def finalize
+  #   @promotional_rules(items)
+  # end
 
   private
 
@@ -30,6 +30,3 @@ class Basket
   end
 
 end
-
-mutil = Mutli.new(items,product_code,quantity,discount)
-mutil.calculate_discount(@items, subtotal)
