@@ -7,8 +7,8 @@ describe Checkout do
   let(:product_list){double:product_list, find_item: nil}
   let(:basket_class){double:basket_class, new: basket}
   let(:basket){double:basket, store: nil, finalize: nil}
-  let(:promotional_rules){double:promotional_rules}
-  let(:multi_discount){double:multi_discount, calculate_discount:10 }
+  let(:multi_discount_instance){double:multi_discount_instance, calculate_discount:10}
+  let(:promotional_rules){[multi_discount_instance]}
 
   context 'scan' do
     it 'scans object and calls for product to be checked' do
@@ -27,13 +27,9 @@ describe Checkout do
   end
 
   context 'final amount' do
-    it 'request total amount' do
-      expect(basket).to receive(:finalize)
-      checkout.total
-    end
 
     it 'requests discounts do' do
-      expect(multi_discount).to receive(:calculate_discount).with(basket)
+      expect(multi_discount_instance).to receive(:calculate_discount).with(basket)
       checkout.total
     end
   end

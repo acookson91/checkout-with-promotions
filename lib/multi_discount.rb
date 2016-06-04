@@ -6,9 +6,9 @@ class MultiDiscount
     @discount = discount
   end
 
-  def calculate_discount(items)
-    if product_count(items,@product_code) >= @quantity
-      product_count(items,@product_code) * @discount
+  def calculate_discount(basket)
+    if product_count(basket.items,@product_code) >= @quantity
+      product_count(basket.items,@product_code) * @discount
     end
   end
 
