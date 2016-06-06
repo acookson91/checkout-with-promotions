@@ -20,6 +20,10 @@ class Basket
     @subtotal
   end
 
+  def apply_discount(discount_amount)
+    @subtotal -= discount_amount
+  end
+
   private
 
   def calculate_subtotal(items)
