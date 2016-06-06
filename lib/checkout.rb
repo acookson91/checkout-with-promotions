@@ -12,6 +12,7 @@ class Checkout
   end
 
   def scan(item_code)
+    raise "Item code must be a string" unless item_code.class == String
     item = @product_list.find_item(item_code)
     @basket.store(item)
   end

@@ -14,6 +14,11 @@ describe Checkout do
       expect(product_list).to receive(:find_item).with(item_code)
       checkout.scan(item_code)
     end
+
+    it 'raises error if item is not a string' do
+      item_code = 001
+      expect{checkout.scan(item_code)}.to raise_error("Item code must be a string")
+    end
   end
 
   context 'add product' do
