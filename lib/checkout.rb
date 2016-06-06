@@ -12,7 +12,7 @@ class Checkout
   end
 
   def scan(item_code)
-    raise "Item code must be a string" unless item_code.class == String
+    raise "Item code must be a string" unless is_string?(item_code)
     item = @product_list.find_item(item_code)
     @basket.store(item)
   end
@@ -23,6 +23,10 @@ class Checkout
   end
 
   private
+
+  def is_string?(item_code)
+    item_code.class == String
+  end
 
   def subtotal
     @basket.request_subtotal
