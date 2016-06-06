@@ -17,7 +17,8 @@ class Checkout
   end
 
   def total
-    subtotal - discount_amount
+    apply_discount
+    '£' + subtotal.round(2).to_s
   end
 
   private
@@ -26,10 +27,16 @@ class Checkout
     @basket.request_subtotal
   end
 
-  def discount_amount
-    discount_total = 0
-    @promotional_rules.each {|discount| discount_total += discount.calculate_discount(@basket)}
-    discount_total
+  def apply_discount
+    @promotional_rules.each do |discount|
+      discount_total = 0
+      discount_total += discount.calculate_discount(@basket)
+      add_discount(discount_total)
+    end
+  end
+
+  def add_discount(discount_total)
+    @basket.apply_discount(discount_total)
   end
 
 end
