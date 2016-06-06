@@ -5,13 +5,13 @@ require_relative 'percentage_discount'
 
 class Checkout
 
-  def initialize(promotional_rules, product_list = ProductList.new,basket = Basket.new)
+  def initialize(promotional_rules = [], product_list = ProductList.new,basket = Basket.new)
     @product_list = product_list
     @basket = basket
     @promotional_rules = promotional_rules
   end
 
-  def store(item_code)
+  def scan(item_code)
     item = @product_list.find_item(item_code)
     @basket.store(item)
   end
@@ -28,10 +28,14 @@ class Checkout
   end
 
   def apply_discount
-    @promotional_rules.each do |discount|
-      discount_total = 0
-      discount_total += discount.calculate_discount(@basket)
-      add_discount(discount_total)
+      if @promotional_rules.empty?
+        0
+      else
+      @promotional_rules.each do |discount|
+        discount_total = 0
+        discount_total += discount.calculate_discount(@basket)
+        add_discount(discount_total)
+      end
     end
   end
 

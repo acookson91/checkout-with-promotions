@@ -12,7 +12,7 @@ describe Checkout do
     it 'scans object and calls for product to be checked' do
       item_code = 'item'
       expect(product_list).to receive(:find_item).with(item_code)
-      checkout.store(item_code)
+      checkout.scan(item_code)
     end
   end
 
@@ -20,7 +20,7 @@ describe Checkout do
     it 'adds product to basket' do
       item = '001'
       expect(basket).to receive(:store).with('item')
-      checkout.store(item)
+      checkout.scan(item)
     end
   end
 
