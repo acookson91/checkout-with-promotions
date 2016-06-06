@@ -7,8 +7,9 @@ class PercentageDiscount
 
   def calculate_discount(basket)
     if basket.request_subtotal >= @limit
-      percent(@percentage) * basket.request_subtotal
+      discount = percent(@percentage) * basket.request_subtotal
     end
+    discount
   end
 
   private

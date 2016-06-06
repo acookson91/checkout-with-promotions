@@ -93,10 +93,12 @@ I used ruby with Rspec for testing.
 
 ## Features
 
-
+The checkout system is able take custom promotions as well as having new promotions added easily. Features can easily be added and removed as each action has its own class.
 
 ## Design approach and Challenges
 
+My design aim was to keep each feature seperate without creating too many classes. The main challenge was applying the discounts. At first I had the discounted being called and applied from the basket. This meant the basket class was calculating discounts, when this was really the job of the checkout system.
 
+Once the discounts were moved to there own classes, I injected the basket from the checkout to calculate discounts. This also meant that when new custom promotions are created they will have access to all the basket information without having to create a new method in the checkout class.
 
 ## Future developments and improvement

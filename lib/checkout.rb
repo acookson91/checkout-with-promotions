@@ -1,3 +1,8 @@
+require_relative 'product_list'
+require_relative 'basket'
+require_relative 'multi_discount'
+require_relative 'percentage_discount'
+
 class Checkout
 
   def initialize(promotional_rules, product_list = ProductList.new,basket = Basket.new)
@@ -22,9 +27,9 @@ class Checkout
   end
 
   def discount_amount
-    discount_amount = 0
-    @promotional_rules.each {|discount| discount_amount += discount.calculate_discount(@basket)}
-    discount_amount
+    discount_total = 0
+    @promotional_rules.each {|discount| discount_total += discount.calculate_discount(@basket)}
+    discount_total
   end
 
 end

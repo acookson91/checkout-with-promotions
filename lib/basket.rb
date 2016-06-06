@@ -25,7 +25,7 @@ class Basket
   def calculate_subtotal(items)
     new_subtotal = 0
     items.each {|item| new_subtotal += item[:price].to_f}
-    new_subtotal
+    @subtotal = new_subtotal
   end
 
 end
